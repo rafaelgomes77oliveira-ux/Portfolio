@@ -1,15 +1,7 @@
 import { portfolioData } from "../../data/portfolioData";
+import { EDITOR_TABS } from "../../data/tabsData";
 
-export default function SidebarNav({ onRunCommand, activeCommand }) {
-  const navFiles = [
-    { name: "main.ts", cmd: "code", icon: "⚡", label: "Hero / Código" },
-    { name: "about.md", cmd: "about", icon: "👤", label: "Sobre Mim" },
-    { name: "skills.json", cmd: "skills", icon: "⚙️", label: "Habilidades" },
-    { name: "experience.git", cmd: "experience", icon: "🌿", label: "Experiência" },
-    { name: "projects/", cmd: "projects", icon: "📁", label: "Projetos" },
-    { name: "contact.exe", cmd: "contact", icon: "✉️", label: "Contato" },
-  ];
-
+export default function SidebarNav({ onRunCommand, activeCommand, openTabs = [] }) {
   return (
     <aside className="ide-sidebar">
       {/* Top Brand */}
@@ -23,30 +15,36 @@ export default function SidebarNav({ onRunCommand, activeCommand }) {
         </div>
       </div>
 
-      {/* Arquivos do Projeto (Navegação) */}
+      {/* Arquivos do Projeto (Explorador estilo VS Code) */}
       <div className="ide-file-tree">
         <div className="ide-tree-title">EXPLORADOR // ARQUIVOS</div>
         <nav className="ide-files-list">
-          {navFiles.map((file) => {
-            const isActive = activeCommand === file.cmd;
+          {EDITOR_TABS.map((file) => {
+            const isActive = activeCommand === file.id;
+            const isOpen = openTabs.includes(file.id);
+
             return (
               <button
-                key={file.name}
+                key={file.id}
                 type="button"
-                className={`ide-file-item ${isActive ? "active" : ""}`}
-                onClick={() => onRunCommand(file.cmd)}
+                className={`ide-file-item ${isActive ? "active" : ""} ${isOpen ? "is-open" : ""}`}
+                onClick={() => onRunCommand(file.id)}
                 title={`Abrir ${file.name} (${file.label})`}
               >
                 <span className="ide-file-icon">{file.icon}</span>
                 <span className="ide-file-name">{file.name}</span>
-                {isActive && <span className="ide-active-indicator"></span>}
+                {isActive ? (
+                  <span className="ide-active-indicator" title="Arquivo ativo"></span>
+                ) : isOpen ? (
+                  <span className="ide-open-indicator" title="Aba aberta no editor"></span>
+                ) : null}
               </button>
             );
           })}
         </nav>
       </div>
 
-      {/* Rodapé da sidebar com redes */}
+      {/* Rodapé da sidebar com redes sociais e ajuda */}
       <div className="ide-sidebar-footer">
         <div className="ide-quick-socials">
           <a
@@ -71,7 +69,7 @@ export default function SidebarNav({ onRunCommand, activeCommand }) {
             type="button"
             className="ide-social-link"
             onClick={() => onRunCommand("help")}
-            title="Ajuda CLI"
+            title="Ajuda CLI (terminal.sh)"
           >
             ❓
           </button>

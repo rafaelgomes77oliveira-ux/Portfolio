@@ -5,8 +5,13 @@ import SkillsOutput from "../Commands/SkillsOutput";
 import ExperienceOutput from "../Commands/ExperienceOutput";
 import ContactOutput from "../Commands/ContactOutput";
 import HelpOutput from "../Commands/HelpOutput";
+import EmptyEditorView from "../Commands/EmptyEditorView";
 
 export default function MainView({ activeTab, onRunCommand }) {
+  if (!activeTab) {
+    return <EmptyEditorView onRunCommand={onRunCommand} />;
+  }
+
   switch (activeTab) {
     case "code":
       return <CodeEditorOutput onRunCommand={onRunCommand} />;
@@ -27,7 +32,9 @@ export default function MainView({ activeTab, onRunCommand }) {
       return <ContactOutput />;
 
     case "terminal":
-    default:
       return <HelpOutput onRunCommand={onRunCommand} />;
+
+    default:
+      return <EmptyEditorView onRunCommand={onRunCommand} />;
   }
 }

@@ -5,12 +5,12 @@ export const portfolioData = {
   version: "v2.5.0-hacker-edition",
   
   about: {
-    name: "Rafael Gomes Oliveira",
+    name: "Rafael Gomes Antunes de Oliveira",
     role: "Full Stack Developer | Estudante de Engenharia de Software",
-    location: "Brasil",
+    location: "Belo Horizonte, MG, Brasil",
     bio: [
       "Olá, bem-vindo(a) ao meu terminal! Sou um desenvolvedor focado em criar aplicações web modernas, funcionais e com design marcante.",
-      "Atualmente cursando faculdade na área de tecnologia, dedico meu tempo ao desenvolvimento de software, arquitetura de sistemas e experiência do usuário (UX/UI).",
+      "Atualmente cursando faculdade de Engenharia de Software, dedico meu tempo ao desenvolvimento de software, arquitetura de sistemas e experiência do usuário (UX/UI).",
       "Tenho paixão por código limpo, boas práticas, automação e resolver problemas complexos com soluções elegantes."
     ],
     highlights: [
@@ -31,21 +31,18 @@ export const portfolioData = {
     ],
     backend: [
       { name: "Node.js", level: 82, icon: "🟢" },
-      { name: "Express.js", level: 80, icon: "🛠️" },
+      { name: "Java", level: 80, icon: "🛠️" },
       { name: "RESTful APIs", level: 88, icon: "🔌" },
-      { name: "Python", level: 75, icon: "🐍" }
-    ],
-    database: [
-      { name: "PostgreSQL", level: 78, icon: "🐘" },
-      { name: "MySQL", level: 80, icon: "🐬" },
-      { name: "MongoDB", level: 75, icon: "🍃" }
+      { name: "Python", level: 75, icon: "🐍" },
+      { name: "GdScript", level: 82, icon: "🎮" }
     ],
     tools: [
       { name: "Git & GitHub", level: 90, icon: "🐙" },
       { name: "Vercel / Cloud Deploy", level: 85, icon: "▲" },
-      { name: "Linux / Bash", level: 78, icon: "🐧" },
       { name: "Figma (UI/UX)", level: 82, icon: "📐" },
-      { name: "Docker", level: 70, icon: "🐳" }
+      { name: "Unity", level: 82, icon: "🎮"},
+      { name: "Aseprite", level: 75, icon: "🎨" },
+      { name: "Photoshop", level: 75, icon: "🎨" }
     ]
   },
 
@@ -106,15 +103,15 @@ export const portfolioData = {
     },
     {
       name: "LinkedIn",
-      display: "linkedin.com/in/rafaelgomesoliveira",
-      url: "https://www.linkedin.com/",
+      display: "linkedin.com/in/rafael-g-antunes-8bba733a3",
+      url: "https://www.linkedin.com/in/rafael-g-antunes-8bba733a3",
       cmd: "open linkedin",
       icon: "💼"
     },
     {
       name: "Email",
-      display: "rafael.dev@exemplo.com",
-      url: "mailto:rafael.dev@exemplo.com",
+      display: "rafaelgomesa0403@gmail.com",
+      url: "rafaelgomesa0403@gmail.com",
       cmd: "send mail",
       icon: "✉️"
     },

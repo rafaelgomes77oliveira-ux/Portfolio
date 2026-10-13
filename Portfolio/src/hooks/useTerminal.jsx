@@ -1,11 +1,39 @@
 import { useState, useCallback } from "react";
 import { portfolioData } from "../data/portfolioData";
+import { DEFAULT_OPEN_TABS, DEFAULT_ACTIVE_TAB } from "../data/tabsData";
 import { soundManager } from "../utils/audio";
 
 export function useTerminal({ onToggleSound } = {}) {
-  // Aba ativa atual (inspirado nas abas de arquivos do VS Code / abdulmomin.dev)
-  const [activeTab, setActiveTab] = useState("code"); // 'code' | 'about' | 'projects' | 'skills' | 'experience' | 'contact' | 'terminal'
-  
+  // Abas abertas no topo (inicialmente apenas a principal 'code' / portfolio.tsx)
+  const [openTabs, setOpenTabs] = useState(DEFAULT_OPEN_TABS);
+  // Aba ativa atual
+  const [activeTab, setActiveTab] = useState(DEFAULT_ACTIVE_TAB); // 'code' | 'about' | 'projects' | 'skills' | 'experience' | 'contact' | 'terminal' | null
+
+  // Abrir ou alternar para uma aba
+  const openTab = useCallback((tabId) => {
+    setOpenTabs((prev) => (prev.includes(tabId) ? prev : [...prev, tabId]));
+    setActiveTab(tabId);
+  }, []);
+
+  // Fechar uma aba (com botão X)
+  const closeTab = useCallback((tabIdToClose) => {
+    soundManager.playBeep(420, 0.05, "sine");
+    setOpenTabs((prevOpen) => {
+      const idx = prevOpen.indexOf(tabIdToClose);
+      if (idx === -1) return prevOpen;
+      const nextOpen = prevOpen.filter((t) => t !== tabIdToClose);
+
+      setActiveTab((currentActive) => {
+        if (currentActive !== tabIdToClose) return currentActive;
+        if (nextOpen.length === 0) return null;
+        const nextIdx = Math.min(idx, nextOpen.length - 1);
+        return nextOpen[nextIdx];
+      });
+
+      return nextOpen;
+    });
+  }, []);
+
   // Histórico de saídas do console do terminal integrado
   const [consoleEntries, setConsoleEntries] = useState([
     {
@@ -51,28 +79,28 @@ export function useTerminal({ onToggleSound } = {}) {
       case "code":
       case "main":
       case "editor":
-        setActiveTab("code");
+        openTab("code");
         textOutput = "Abrindo editor: portfolio.tsx";
         soundManager.playSuccess();
         break;
 
       case "about":
       case "bio":
-        setActiveTab("about");
+        openTab("about");
         textOutput = "Abrindo arquivo: about.md";
         soundManager.playSuccess();
         break;
 
       case "projects":
       case "projetos":
-        setActiveTab("projects");
+        openTab("projects");
         textOutput = "Abrindo diretório: projects/";
         soundManager.playSuccess();
         break;
 
       case "skills":
       case "habilidades":
-        setActiveTab("skills");
+        openTab("skills");
         textOutput = "Abrindo arquivo: skills.json";
         soundManager.playSuccess();
         break;
@@ -80,20 +108,26 @@ export function useTerminal({ onToggleSound } = {}) {
       case "experience":
       case "experiencia":
       case "git":
-        setActiveTab("experience");
+        openTab("experience");
         textOutput = "Carregando histórico: experience.git (git log)";
         soundManager.playSuccess();
         break;
 
       case "contact":
       case "contato":
-        setActiveTab("contact");
+        openTab("contact");
         textOutput = "Executando canal: contact.exe";
         soundManager.playSuccess();
         break;
 
+      case "terminal":
+        openTab("terminal");
+        textOutput = "Abrindo terminal interativo: terminal.sh";
+        soundManager.playSuccess();
+        break;
+
       case "help":
-        setActiveTab("terminal");
+        openTab("terminal");
         textOutput = portfolioData.commands
           .map((c) => `$ ${c.command.padEnd(12, " ")} - ${c.desc}`)
           .join("\n");
@@ -104,7 +138,7 @@ export function useTerminal({ onToggleSound } = {}) {
       case "system":
       case "neofetch":
       case "sysinfo":
-        setActiveTab("terminal");
+        openTab("terminal");
         textOutput = `USUÁRIO: ${portfolioData.user}@${portfolioData.host}\nSO: CyberOS Linux 6.8.9 x86_64\nSHELL: zsh 5.9\nSTATUS: ONLINE`;
         soundManager.playSuccess();
         break;
@@ -226,6 +260,10 @@ export function useTerminal({ onToggleSound } = {}) {
   }, [inputVal]);
 
   return {
+    openTabs,
+    setOpenTabs,
+    openTab,
+    closeTab,
     activeTab,
     setActiveTab,
     consoleEntries,

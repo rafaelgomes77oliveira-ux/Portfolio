@@ -14,6 +14,8 @@ export default function Terminal({
   const terminalBodyRef = useRef(null);
 
   const {
+    openTabs,
+    closeTab,
     activeTab,
     setActiveTab,
     consoleEntries,
@@ -41,6 +43,7 @@ export default function Terminal({
       <SidebarNav
         onRunCommand={(cmd) => executeCommand(cmd)}
         activeCommand={activeTab}
+        openTabs={openTabs}
       />
 
       {/* Painel Principal do Workspace Fullscreen */}
@@ -51,10 +54,12 @@ export default function Terminal({
           onClear={() => executeCommand("clear")}
         />
 
-        {/* Abas no topo do editor de código */}
+        {/* Abas no topo do editor de código estilo VS Code */}
         <EditorTabs
+          openTabs={openTabs}
           activeTab={activeTab}
-          onSelectTab={(tabId) => executeCommand(tabId)}
+          onSelectTab={(tabId) => setActiveTab(tabId)}
+          onCloseTab={closeTab}
         />
 
         {/* Área de visualização do arquivo ativo */}
@@ -122,7 +127,7 @@ export default function Terminal({
         {/* Rodapé fixo do sistema */}
         <footer className="terminal-footer">
           <div className="footer-left">
-            <span>ARQUIVO ATIVO: {activeTab}</span>
+            <span>ARQUIVO ATIVO: {activeTab || "NENHUM"}</span>
             <span className="footer-separator">•</span>
             <span>CODIFICAÇÃO: UTF-8</span>
           </div>

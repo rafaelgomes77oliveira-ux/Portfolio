@@ -22,21 +22,17 @@ export default function CodeEditorOutput({ onRunCommand }) {
   return (
     <div className="cmd-output cmd-code-editor">
       <div className="code-editor-window">
-        {/* Barra superior de abas da IDE */}
-        <div className="code-editor-tabs-bar">
-          <div className="code-editor-tab active">
-            <span className="tab-icon">⚛️</span>
-            <span className="tab-filename">portfolio.tsx</span>
-            <span className="tab-status-dot"></span>
-          </div>
-          <div className="code-editor-tab">
-            <span className="tab-icon">📝</span>
-            <span className="tab-filename">about.md</span>
-          </div>
-          <div className="code-editor-tab">
-            <span className="tab-icon">📦</span>
-            <span className="tab-filename">package.json</span>
-          </div>
+        {/* Barra de caminho (breadcrumbs) estilo VS Code */}
+        <div className="code-editor-breadcrumb-bar">
+          <span className="breadcrumb-segment">portfolio</span>
+          <span className="breadcrumb-sep">›</span>
+          <span className="breadcrumb-segment">src</span>
+          <span className="breadcrumb-sep">›</span>
+          <span className="breadcrumb-segment breadcrumb-current">
+            <span className="breadcrumb-icon">⚛️</span>
+            portfolio.tsx
+          </span>
+          <span className="breadcrumb-tag">TypeScript React • UTF-8</span>
         </div>
 
         {/* Linhas de código com numeração */}
