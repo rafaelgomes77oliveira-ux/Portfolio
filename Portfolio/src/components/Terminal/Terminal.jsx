@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import TerminalHeader from "./TerminalHeader";
 import TerminalPrompt from "./TerminalPrompt";
 import QuickToolbar from "../UI/QuickToolbar";
@@ -6,11 +6,13 @@ import SidebarNav from "../UI/SidebarNav";
 import EditorTabs from "../UI/EditorTabs";
 import MainView from "./MainView";
 import { useTerminal } from "../../hooks/useTerminal";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function Terminal({
   soundActive,
   onToggleSound,
 }) {
+  const { language, t } = useLanguage();
   const terminalBodyRef = useRef(null);
 
   const {
@@ -29,16 +31,23 @@ export default function Terminal({
     onToggleSound,
   });
 
-  const handleContainerClick = (e) => {
-    // Foca o input caso o clique não tenha sido em um botão ou link clicável
+  // Sempre que mudar de aba, reseta o scroll para o topo da página para não cortar conteúdo
+  useEffect(() => {
+    if (terminalBodyRef.current) {
+      terminalBodyRef.current.scrollTop = 0;
+    }
+  }, [activeTab]);
+
+  const handleTerminalPanelClick = (e) => {
+    // Foca o input apenas se o usuário clicou na área do console e não em botões/links
     if (!e.target.closest("button") && !e.target.closest("a") && !e.target.closest("input")) {
       const input = terminalBodyRef.current?.querySelector("input");
-      input?.focus();
+      input?.focus({ preventScroll: true });
     }
   };
 
   return (
-    <div className="terminal-workspace-layout" onClick={handleContainerClick}>
+    <div className="terminal-workspace-layout">
       {/* Sidebar estilo IDE inspirada no abdulmomin.dev */}
       <SidebarNav
         onRunCommand={(cmd) => executeCommand(cmd)}
@@ -72,9 +81,9 @@ export default function Terminal({
           </div>
 
           {/* Console de Terminal Integrado na base da visualização */}
-          <div className="integrated-terminal-panel">
+          <div className="integrated-terminal-panel" onClick={handleTerminalPanelClick}>
             <div className="terminal-panel-header">
-              <span className="panel-badge">TERMINAL // CONSOLE</span>
+              <span className="panel-badge">{t("terminal.title")}</span>
               <span className="panel-status">bash • UTF-8</span>
             </div>
 
@@ -127,12 +136,12 @@ export default function Terminal({
         {/* Rodapé fixo do sistema */}
         <footer className="terminal-footer">
           <div className="footer-left">
-            <span>ARQUIVO ATIVO: {activeTab || "NENHUM"}</span>
+            <span>{t("status.activeFile")} {activeTab || (language === "pt" ? "NENHUM" : "NONE")}</span>
             <span className="footer-separator">•</span>
-            <span>CODIFICAÇÃO: UTF-8</span>
+            <span>{t("status.encoding")}</span>
           </div>
           <div className="footer-right">
-            <span>USE TAB PARA COMPLETAR • ↑/↓ HISTÓRICO</span>
+            <span>{t("status.shortcuts")}</span>
           </div>
         </footer>
       </div>

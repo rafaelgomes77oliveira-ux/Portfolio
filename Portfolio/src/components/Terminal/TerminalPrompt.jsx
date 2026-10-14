@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { portfolioData } from "../../data/portfolioData";
 import { soundManager } from "../../utils/audio";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function TerminalPrompt({
   inputVal,
@@ -10,11 +11,12 @@ export default function TerminalPrompt({
   onNavigateDown,
   onAutocomplete,
 }) {
+  const { t } = useLanguage();
   const inputRef = useRef(null);
 
   useEffect(() => {
     if (inputRef.current) {
-      inputRef.current.focus();
+      inputRef.current.focus({ preventScroll: true });
     }
   }, []);
 
@@ -53,12 +55,11 @@ export default function TerminalPrompt({
           value={inputVal}
           onChange={(e) => setInputVal(e.target.value)}
           onKeyDown={handleKeyDown}
-          autoFocus
           spellCheck="false"
           autoCapitalize="off"
           autoComplete="off"
           autoCorrect="off"
-          placeholder="digite um comando (ex: help)..."
+          placeholder={t("terminal.promptPlaceholder")}
           aria-label="Linha de comando do terminal"
         />
         <span className="terminal-cursor">█</span>

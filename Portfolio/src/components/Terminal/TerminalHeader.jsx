@@ -1,10 +1,15 @@
+import { VscUnmute, VscMute, VscTrash, VscGlobe } from "react-icons/vsc";
 import { portfolioData } from "../../data/portfolioData";
+import { useLanguage } from "../../context/LanguageContext";
+import { soundManager } from "../../utils/audio";
 
 export default function TerminalHeader({
   soundActive,
   onToggleSound,
   onClear,
 }) {
+  const { language, toggleLanguage, t } = useLanguage();
+
   return (
     <header className="terminal-header">
       <div className="terminal-header-left">
@@ -13,7 +18,7 @@ export default function TerminalHeader({
             type="button"
             className="dot dot-close"
             onClick={onClear}
-            title="Limpar tela (Clear)"
+            title={t("header.clearTitle")}
           ></button>
           <button
             type="button"
@@ -34,27 +39,46 @@ export default function TerminalHeader({
       </div>
 
       <div className="terminal-header-right">
+        {/* Botão de Troca de Idioma PT / EN */}
+        <button
+          type="button"
+          className="control-chip-btn lang-toggle-btn active"
+          onClick={() => {
+            soundManager.playEnter();
+            toggleLanguage();
+          }}
+          title={t("header.langSwitchTitle")}
+          style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+        >
+          <VscGlobe style={{ color: "var(--accent, #61dafb)" }} />
+          <span>{language === "pt" ? "PT 🇧🇷" : "EN 🇺🇸"}</span>
+        </button>
+
         <button
           type="button"
           className={`control-chip-btn ${soundActive ? "active" : ""}`}
           onClick={onToggleSound}
-          title="Alternar efeitos sonoros mecânicos"
+          title={t("header.soundTitle")}
+          style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
         >
-          {soundActive ? "🔊 SOM: ON" : "🔇 SOM: OFF"}
+          {soundActive ? <VscUnmute /> : <VscMute />}
+          <span>{soundActive ? t("header.soundOn") : t("header.soundOff")}</span>
         </button>
 
         <button
           type="button"
           className="control-chip-btn"
           onClick={onClear}
-          title="Limpar histórico da tela"
+          title={t("header.clearTitle")}
+          style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
         >
-          🧹 LIMPAR
+          <VscTrash />
+          <span>{t("header.clear")}</span>
         </button>
 
         <div className="system-pill">
           <span className="status-indicator"></span>
-          <span className="system-status-text">ONLINE</span>
+          <span className="system-status-text">{t("header.online")}</span>
         </div>
       </div>
     </header>

@@ -1,18 +1,26 @@
+import { VscTerminal } from "react-icons/vsc";
+import { useLanguage } from "../../context/LanguageContext";
+
 export default function QuickToolbar({ onRunCommand }) {
+  const { t } = useLanguage();
+
   const quickActions = [
     { label: "code", desc: "Editor portfolio.tsx" },
-    { label: "about", desc: "Sobre mim" },
-    { label: "projects", desc: "Projetos" },
-    { label: "skills", desc: "Habilidades" },
-    { label: "experience", desc: "Trajetória Git Log" },
-    { label: "contact", desc: "Contato" },
-    { label: "whoami", desc: "Sistema" },
-    { label: "clear", desc: "Limpar" },
+    { label: "about", desc: "Sobre mim / About" },
+    { label: "projects", desc: "Projetos / Projects" },
+    { label: "skills", desc: "Habilidades / Skills" },
+    { label: "experience", desc: "Git Log" },
+    { label: "contact", desc: "Contato / Contact" },
+    { label: "whoami", desc: "User info" },
+    { label: "clear", desc: "Clear" },
   ];
 
   return (
     <div className="quick-toolbar">
-      <span className="quick-label">⚡ COMANDOS RÁPIDOS:</span>
+      <span className="quick-label">
+        <VscTerminal style={{ marginRight: "6px", verticalAlign: "middle" }} />
+        {t("terminal.quickCommandsLabel")}
+      </span>
       <div className="quick-buttons">
         {quickActions.map((action) => (
           <button

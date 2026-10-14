@@ -1,4 +1,5 @@
 import { getTabById } from "../../data/tabsData";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function EditorTabs({
   openTabs = [],
@@ -6,10 +7,14 @@ export default function EditorTabs({
   onSelectTab,
   onCloseTab,
 }) {
+  const { language } = useLanguage();
+
   if (!openTabs || openTabs.length === 0) {
     return (
       <div className="editor-tabs-container empty-tabs">
-        <span className="empty-tabs-hint">Nenhum arquivo aberto no editor</span>
+        <span className="empty-tabs-hint">
+          {language === "pt" ? "Nenhum arquivo aberto no editor" : "No files open in editor"}
+        </span>
       </div>
     );
   }
@@ -43,7 +48,9 @@ export default function EditorTabs({
             }}
             title={`${tab.name} (${tab.label}) • Clique para ver, botão X para fechar`}
           >
-            <span className="tab-icon">{tab.icon}</span>
+            <span className="tab-icon" style={{ color: tab.iconColor }}>
+              {typeof tab.icon === "function" ? <tab.icon aria-hidden="true" /> : tab.icon}
+            </span>
             <span className="tab-name">{tab.name}</span>
 
             {/* Botão de Fechar Aba (X) */}

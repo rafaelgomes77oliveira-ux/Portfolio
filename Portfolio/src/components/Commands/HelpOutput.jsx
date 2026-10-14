@@ -1,11 +1,15 @@
+import { VscLightbulb } from "react-icons/vsc";
 import { portfolioData } from "../../data/portfolioData";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function HelpOutput({ onRunCommand }) {
+  const { t } = useLanguage();
+
   return (
     <div className="cmd-output cmd-help">
       <div className="output-header">
-        <span className="accent-tag">[ TERMINAL HELP v2.5 ]</span>
-        <span className="output-sub">Lista de comandos reconhecidos pelo interpretador:</span>
+        <span className="accent-tag">{t("help.tag")}</span>
+        <span className="output-sub">{t("help.subtitle")}</span>
       </div>
 
       <div className="help-grid">
@@ -19,14 +23,17 @@ export default function HelpOutput({ onRunCommand }) {
             >
               $ {item.command}
             </button>
-            <span className="help-desc">{item.desc}</span>
+            <span className="help-desc">{t(`help.commandsDesc.${item.command}`) || item.desc}</span>
           </div>
         ))}
       </div>
 
       <div className="help-footer">
-        <p className="dim-text">
-          💡 <span className="highlight">Dica Pro:</span> Use <kbd className="terminal-kbd">Tab</kbd> para autocompletar comandos, ou as setas <kbd className="terminal-kbd">↑</kbd> e <kbd className="terminal-kbd">↓</kbd> para navegar pelo histórico. Você também pode clicar diretamente em qualquer botão acima!
+        <p className="dim-text" style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+          <VscLightbulb style={{ color: "var(--terminal-yellow, #ffd700)", flexShrink: 0 }} />
+          <span>
+            <span className="highlight">{t("help.proTip")}</span> {t("help.proTipDesc")}
+          </span>
         </p>
       </div>
     </div>

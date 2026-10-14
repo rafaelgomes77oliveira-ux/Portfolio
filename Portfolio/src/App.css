@@ -866,8 +866,17 @@
 }
 
 /* ==========================================================================
-   EXPERIENCE OUTPUT (GIT LOG)
+   EXPERIENCE OUTPUT (GIT LOG & 3D SKILLS GLOBE)
    ========================================================================== */
+
+.experience-globe-card {
+  margin-bottom: 28px;
+  background-color: #060606;
+  border: 1px solid #161616;
+  border-radius: 8px;
+  padding: 18px 20px 22px 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
 
 .git-timeline {
   display: flex;
@@ -1473,8 +1482,337 @@
   margin-top: 4px;
 }
 
+.contact-actions .btn-link,
+.contact-actions .btn-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  font-family: var(--font-mono);
+  background-color: #141414;
+  border: 1px solid #222222;
+  color: #cccccc;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.contact-actions .btn-link:hover,
+.contact-actions .btn-copy:hover {
+  background-color: #1c1c1c;
+  border-color: #383838;
+  color: #ffffff;
+}
+
+.contact-actions .btn-link {
+  color: var(--green-primary);
+  border-color: rgba(0, 255, 102, 0.25);
+  background-color: rgba(0, 255, 102, 0.05);
+}
+
+.contact-actions .btn-link:hover {
+  background-color: rgba(0, 255, 102, 0.12);
+  border-color: var(--green-primary);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   CONTACT FORM & CYBER TERMINAL EMAIL TRANSMISSION
+   ========================================================================== */
+
+.contact-form-section {
+  margin-top: 24px;
+  padding: 24px;
+  background: #090909;
+  border: 1px solid #1a1a1a;
+  border-left: 3px solid var(--green-primary);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.contact-form-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-bottom: 1px solid #141414;
+  padding-bottom: 14px;
+}
+
+.form-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-title-wrap .form-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--green-primary);
+}
+
+.contact-form-header .form-title {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #ffffff;
+  font-family: var(--font-mono);
+}
+
+.contact-form-header .form-desc {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.contact-form-header .form-desc strong {
+  color: var(--green-primary);
+  font-weight: 600;
+}
+
+/* Alert / status banner */
+.form-notice-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 6px;
+  font-size: 12.5px;
+}
+
+.form-notice-box.success {
+  background: rgba(0, 255, 102, 0.06);
+  border: 1px solid rgba(0, 255, 102, 0.3);
+  color: #c9f5d7;
+}
+
+.form-notice-box.warning {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fde68a;
+}
+
+.form-notice-box.warning .notice-icon,
+.form-notice-box.warning .notice-text strong {
+  color: #f59e0b;
+}
+
+.form-notice-box .notice-icon {
+  font-size: 18px;
+  color: var(--green-primary);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.form-notice-box .notice-text strong {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: var(--green-primary);
+  margin-bottom: 4px;
+}
+
+.form-notice-box .notice-text p {
+  margin: 0;
+  line-height: 1.5;
+  color: #b0b0b0;
+}
+
+.form-notice-box .notice-text em {
+  font-style: normal;
+  color: #ffffff;
+}
+
+/* Form inputs & grid */
+.contact-cyber-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row-dual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: #8c8c8c;
+  text-transform: uppercase;
+}
+
+.form-label .label-icon {
+  font-size: 13px;
+  color: var(--green-primary);
+}
+
+.form-label .req-star {
+  color: var(--green-primary);
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  background-color: #050505;
+  border: 1px solid #1f1f1f;
+  border-radius: 6px;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 10px 14px;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: var(--green-primary);
+  box-shadow: 0 0 0 2px rgba(0, 255, 102, 0.15);
+  background-color: #070707;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #444444;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.5;
+}
+
+/* Actions bar */
+.form-actions-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+  padding-top: 14px;
+  border-top: 1px solid #141414;
+}
+
+.action-btn-cut {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 5px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #121212;
+  border: 1px solid #242424;
+  color: #e0e0e0;
+  transition: all 0.2s ease;
+}
+
+.action-btn-cut:hover {
+  background-color: #1a1a1a;
+  border-color: #383838;
+  color: #ffffff;
+}
+
+.action-btn-cut.primary {
+  background-color: var(--green-primary);
+  border-color: var(--green-primary);
+  color: #000000;
+  font-weight: 700;
+  box-shadow: 0 0 16px rgba(0, 255, 102, 0.25);
+}
+
+.action-btn-cut.primary:hover {
+  background-color: #39ff14;
+  border-color: #39ff14;
+  box-shadow: 0 0 22px rgba(57, 255, 20, 0.4);
+  transform: translateY(-1px);
+}
+
+.action-btn-cut.gmail-web {
+  text-decoration: none;
+  background-color: #161212;
+  border-color: #382424;
+  color: #fca5a5;
+}
+
+.action-btn-cut.gmail-web:hover {
+  background-color: #241616;
+  border-color: #ea4335;
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(234, 67, 53, 0.25);
+}
+
+.action-btn-cut.reset {
+  color: #777777;
+  border-color: #181818;
+  background-color: transparent;
+  margin-left: auto;
+}
+
+.action-btn-cut.reset:hover {
+  color: #e0e0e0;
+  border-color: #333333;
+  background-color: #141414;
+}
+
+.action-btn-cut:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.spinner-icon {
+  animation: spin 1s linear infinite;
+  font-size: 14px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.lang-toggle-btn {
+  border-color: rgba(56, 189, 248, 0.4) !important;
+  color: #38bdf8 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px;
+}
+
+.lang-toggle-btn:hover {
+  background: rgba(56, 189, 248, 0.12) !important;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+}
+
 .contact-footer-note {
-  margin-top: 4px;
+  margin-top: 16px;
 }
 
 /* Footer */
@@ -1558,6 +1896,23 @@
   .skills-container,
   .contact-grid {
     grid-template-columns: 1fr;
+  }
+
+  .form-row-dual {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .action-btn-cut {
+    width: 100%;
+  }
+
+  .action-btn-cut.reset {
+    margin-left: 0;
   }
 
   .skill-item {

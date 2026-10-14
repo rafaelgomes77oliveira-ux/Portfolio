@@ -2,8 +2,10 @@ import { useState, useCallback } from "react";
 import { portfolioData } from "../data/portfolioData";
 import { DEFAULT_OPEN_TABS, DEFAULT_ACTIVE_TAB } from "../data/tabsData";
 import { soundManager } from "../utils/audio";
+import { useLanguage } from "../context/LanguageContext";
 
 export function useTerminal({ onToggleSound } = {}) {
+  const { language, toggleLanguage, t } = useLanguage();
   // Abas abertas no topo (inicialmente apenas a principal 'code' / portfolio.tsx)
   const [openTabs, setOpenTabs] = useState(DEFAULT_OPEN_TABS);
   // Aba ativa atual
@@ -151,8 +153,18 @@ export function useTerminal({ onToggleSound } = {}) {
         }
         break;
 
+      case "lang":
+      case "language":
+      case "idioma":
+        toggleLanguage();
+        textOutput = language === "pt"
+          ? "Idioma alterado para Inglês (Language switched to English 🇺🇸)"
+          : "Idioma alterado para Português (Language switched to Portuguese 🇧🇷)";
+        soundManager.playSuccess();
+        break;
+
       case "date":
-        textOutput = `Data do sistema: ${new Date().toLocaleString("pt-BR")}`;
+        textOutput = `${language === "pt" ? "Data do sistema" : "System date"}: ${new Date().toLocaleString(language === "pt" ? "pt-BR" : "en-US")}`;
         soundManager.playSuccess();
         break;
 
@@ -160,7 +172,7 @@ export function useTerminal({ onToggleSound } = {}) {
         setCommandHistory((prevHistory) => {
           textOutput = prevHistory.length
             ? prevHistory.map((cmd, i) => `${String(i + 1).padStart(3, " ")}  ${cmd}`).join("\n")
-            : "Nenhum comando registrado no histórico.";
+            : t("terminal.historyEmpty");
           return prevHistory;
         });
         soundManager.playSuccess();
@@ -169,13 +181,13 @@ export function useTerminal({ onToggleSound } = {}) {
       case "sudo":
         soundManager.playError();
         isError = true;
-        textOutput = `Permissão negada: '${portfolioData.user}' não está no arquivo sudoers. 🔒`;
+        textOutput = t("terminal.sudoDenied");
         break;
 
       case "repo":
       case "github":
         window.open("https://github.com/rafaelgomes77oliveira-ux/Portfolio", "_blank");
-        textOutput = "Abrindo repositório no GitHub...";
+        textOutput = t("terminal.openGithub");
         soundManager.playSuccess();
         break;
 
@@ -187,7 +199,7 @@ export function useTerminal({ onToggleSound } = {}) {
       default:
         soundManager.playError();
         isError = true;
-        textOutput = `bash: comando não encontrado: "${trimmed}". Digite 'help' para comandos válidos.`;
+        textOutput = `${t("terminal.cmdNotFound")} "${trimmed}". ${t("terminal.cmdNotFoundTip")}`;
         break;
     }
 

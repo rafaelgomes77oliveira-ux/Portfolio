@@ -3,6 +3,7 @@ import Terminal from "./components/Terminal/Terminal";
 import MatrixRain from "./components/Terminal/MatrixRain";
 import ScanlineOverlay from "./components/Terminal/ScanlineOverlay";
 import { soundManager } from "./utils/audio";
+import { LanguageProvider } from "./context/LanguageContext";
 import "./App.css";
 
 export default function App() {
@@ -27,14 +28,16 @@ export default function App() {
   };
 
   return (
-    <div className="hacker-app fullscreen-mode">
-      {/* Container principal ocupando tela cheia */}
-      <main className="app-main-container">
-        <Terminal
-          soundActive={soundActive}
-          onToggleSound={handleToggleSound}
-        />
-      </main>
-    </div>
+    <LanguageProvider>
+      <div className="hacker-app fullscreen-mode">
+        {/* Container principal ocupando tela cheia */}
+        <main className="app-main-container">
+          <Terminal
+            soundActive={soundActive}
+            onToggleSound={handleToggleSound}
+          />
+        </main>
+      </div>
+    </LanguageProvider>
   );
 }

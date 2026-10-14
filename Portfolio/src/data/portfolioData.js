@@ -1,3 +1,24 @@
+import {
+  SiReact,
+  SiJavascript,
+  SiTypescript,
+  SiHtml5,
+  SiCss,
+  SiVite,
+  SiNodedotjs,
+  SiPython,
+  SiGodotengine,
+  SiGithub,
+  SiVercel,
+  SiLinux,
+  SiFigma,
+  SiUnity,
+} from "react-icons/si";
+import { FaJava, FaLinkedin, FaWhatsapp, FaEnvelope } from "react-icons/fa";
+import { DiPhotoshop } from "react-icons/di";
+import { VscPlug, VscDatabase } from "react-icons/vsc";
+import asepriteLogo from "../assets/aseprite logo.png";
+
 export const portfolioData = {
   user: "rafael",
   host: "arch-terminal",
@@ -22,36 +43,39 @@ export const portfolioData = {
 
   skills: {
     frontend: [
-      { name: "React.js", level: 90, icon: "⚛️" },
-      { name: "JavaScript (ES6+)", level: 92, icon: "⚡" },
-      { name: "TypeScript", level: 80, icon: "🔷" },
-      { name: "HTML5 / Semantic Web", level: 95, icon: "🌐" },
-      { name: "CSS3 / Modern CSS / Tailwind", level: 88, icon: "🎨" },
-      { name: "Vite / Next.js", level: 85, icon: "🚀" }
+      { name: "React.js", level: 90, icon: SiReact, color: "#61DAFB" },
+      { name: "JavaScript (ES6+)", level: 92, icon: SiJavascript, color: "#F7DF1E" },
+      { name: "TypeScript", level: 80, icon: SiTypescript, color: "#3178C6" },
+      { name: "HTML5 / Semantic Web", level: 95, icon: SiHtml5, color: "#E34F26" },
+      { name: "CSS3 / Modern CSS / Tailwind", level: 88, icon: SiCss, color: "#3C99DC" },
+      { name: "Vite / Next.js", level: 85, icon: SiVite, color: "#646CFF" }
     ],
     backend: [
-      { name: "Node.js", level: 82, icon: "🟢" },
-      { name: "Java", level: 80, icon: "🛠️" },
-      { name: "RESTful APIs", level: 88, icon: "🔌" },
-      { name: "Python", level: 75, icon: "🐍" },
-      { name: "GdScript", level: 82, icon: "🎮" }
+      { name: "Node.js", level: 82, icon: SiNodedotjs, color: "#68A063" },
+      { name: "Java", level: 80, icon: FaJava, color: "#ED8B00" },
+      { name: "RESTful APIs", level: 88, icon: VscPlug, color: "#FF79C6" },
+      { name: "Python", level: 75, icon: SiPython, color: "#3776AB" },
+      { name: "GdScript", level: 82, icon: SiGodotengine, color: "#478CBF" }
+    ],
+    database: [
+      { name: "JSONServer", level: 75, icon: VscDatabase, color: "#00D8FF" }
     ],
     tools: [
-      { name: "Git & GitHub", level: 90, icon: "🐙" },
-      { name: "Vercel / Cloud Deploy", level: 85, icon: "▲" },
-      { name: "Figma (UI/UX)", level: 82, icon: "📐" },
-      { name: "Unity", level: 82, icon: "🎮"},
-      { name: "Aseprite", level: 75, icon: "🎨" },
-      { name: "Photoshop", level: 75, icon: "🎨" }
+      { name: "Git & GitHub", level: 90, icon: SiGithub, color: "#F05032" },
+      { name: "Vercel / Cloud Deploy", level: 85, icon: SiVercel, color: "#FFFFFF" },
+      { name: "Figma (UI/UX)", level: 82, icon: SiFigma, color: "#F24E1E" },
+      { name: "Unity", level: 82, icon: SiUnity, color: "#FFFFFF" },
+      { name: "Aseprite", level: 75, icon: asepriteLogo, color: "#7D5FFF" },
+      { name: "Photoshop", level: 75, icon: DiPhotoshop, color: "#31A8FF" }
     ]
   },
 
   projects: [
     {
       id: "portfolio-terminal",
-      title: "Hacker Terminal Portfolio",
+      title: "IDE Terminal Portfolio",
       category: "Frontend / Creative UX",
-      description: "Portfólio interativo com estética de terminal cyberpunk, comandos dinâmicos, autocomplete, histórico e chuva de código Matrix.",
+      description: "Portfólio interativo com estética de terminal de IDE, comandos dinâmicos, autocomplete e histórico.",
       techs: ["React", "Vite", "Vanilla CSS", "Web Audio API", "Vercel"],
       demoUrl: "https://seu-portfolio.vercel.app",
       githubUrl: "https://github.com/rafaelgomes77oliveira-ux/Portfolio",
@@ -59,24 +83,24 @@ export const portfolioData = {
       status: "ONLINE"
     },
     {
-      id: "task-manager-api",
-      title: "Fullstack Task Management System",
-      category: "Fullstack",
-      description: "Plataforma para gerenciamento ágil de tarefas e sprints com autenticação JWT, dashboards de métricas e notificações em tempo real.",
-      techs: ["React", "Node.js", "Express", "PostgreSQL", "JWT"],
-      demoUrl: "https://github.com/rafaelgomes77oliveira-ux",
-      githubUrl: "https://github.com/rafaelgomes77oliveira-ux",
+      id: "Castle-Defenders",
+      title: "Castle Denfenders Pygame",
+      category: "Pixel-Art / Pygame",
+      description: "Jogo desenvolvido em 2 semanas com PyGame no 1° semestre da faculdade de Eng. Software. Design feito em pixel art. Menções na documentação do projeto.",
+      techs: ["PyGame","Python","Aseprite","Pixel art"],
+      demoUrl: "https://github.com/rafaelgomes77oliveira-ux/Pygame-Castle-Defenders",
+      githubUrl: "https://github.com/rafaelgomes77oliveira-ux/Pygame-Castle-Defenders",
       featured: true,
       status: "COMPLETED"
     },
     {
-      id: "facul-academic-hub",
-      title: "Portal Acadêmico / Estudos",
+      id: "Conci",
+      title: "Conci",
       category: "Acadêmico / Web App",
-      description: "Sistema desenvolvido durante os projetos da faculdade para organização de matérias, notas, prazos e repositório de pesquisas.",
-      techs: ["JavaScript", "React", "CSS Modules", "LocalStorage"],
+      description: "Sistema em desenvolvimento na matéria de Trabalho interdisciplinar com a proposta de ser uma plataforma de conexão entre clientes e prestadores autônomos",
+      techs: ["JavaScript", "React", "CSS Modules", "MongoDB", "Vite", "SpringBoot"],
       demoUrl: "https://github.com/rafaelgomes77oliveira-ux",
-      githubUrl: "https://github.com/rafaelgomes77oliveira-ux",
+      githubUrl: "https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2026-2-ti2-7600100-Conci",
       featured: false,
       status: "ACTIVE"
     },
@@ -99,28 +123,32 @@ export const portfolioData = {
       display: "github.com/rafaelgomes77oliveira-ux",
       url: "https://github.com/rafaelgomes77oliveira-ux",
       cmd: "open github",
-      icon: "🐙"
+      icon: SiGithub,
+      color: "#FFFFFF"
     },
     {
       name: "LinkedIn",
       display: "linkedin.com/in/rafael-g-antunes-8bba733a3",
       url: "https://www.linkedin.com/in/rafael-g-antunes-8bba733a3",
       cmd: "open linkedin",
-      icon: "💼"
+      icon: FaLinkedin,
+      color: "#0A66C2"
     },
     {
       name: "Email",
       display: "rafaelgomesa0403@gmail.com",
-      url: "rafaelgomesa0403@gmail.com",
+      url: "mailto:rafaelgomesa0403@gmail.com",
       cmd: "send mail",
-      icon: "✉️"
+      icon: FaEnvelope,
+      color: "#EA4335"
     },
     {
       name: "WhatsApp",
-      display: "+55 (XX) XXXXX-XXXX",
-      url: "https://wa.me/",
+      display: "+55 (21) 9673-2729",
+      url: "https://wa.me/552196732729",
       cmd: "open whatsapp",
-      icon: "💬"
+      icon: FaWhatsapp,
+      color: "#25D366"
     }
   ],
 
@@ -134,17 +162,28 @@ export const portfolioData = {
       period: "2023 - Presente",
       description: "Formação superior com foco em algoritmos, arquitetura de software, engenharia de requisitos e sistemas distribuídos.",
       changes: "+420 horas/aula, 8 projetos acadêmicos entregues",
-      skills: ["Estruturas de Dados", "POO", "Banco de Dados", "Engenharia de Software"]
+      skills: ["POO", "Engenharia de Software"]
     },
     {
       hash: "5d9f03b",
+      branch: "origin/feat-design",
+      tag: "v1.4.0",
+      role: "Desenvolvedor Front-end & UI (Projetos & Prática)",
+      org: "zion escola de entretenimento",
+      period: "2023 - 2025",
+      description: "Desenvolvimento de interfaces modernas em React, consumo de APIs REST, componentização e otimização de performance para web.",
+      changes: "+50 trabalhos",
+      skills: ["Photoshop", "Figma", "Aseprite", "Pixel Art", "Indesign", "Illustrator"]
+    },
+    {
+      hash: "46d54f9",
       branch: "origin/feat-web",
       tag: "v1.2.0",
       role: "Desenvolvedor Front-end & UI (Projetos & Prática)",
       org: "Autônomo / Freelance",
-      period: "2024 - Presente",
+      period: "2024 - 2025",
       description: "Desenvolvimento de interfaces modernas em React, consumo de APIs REST, componentização e otimização de performance para web.",
-      changes: "+18 repositories, 100% código versionado",
+      changes: "+5 repositories, 15 projetos entregues ",
       skills: ["React.js", "Vite", "JavaScript ES6+", "Git/GitHub", "CSS Moderno"]
     },
     {
@@ -154,9 +193,9 @@ export const portfolioData = {
       role: "Início da Jornada em Programação",
       org: "Estudos & Comunidade Tech",
       period: "2022 - 2023",
-      description: "Fundamentos de lógica de programação, versionamento com Git, HTML semântico e estilização CSS aplicada a projetos reais.",
-      changes: "+150 commits iniciais",
-      skills: ["Lógica de Programação", "Git", "HTML/CSS", "JavaScript"]
+      description: "Fundamentos básicos de lógica de programação, versionamento com Git, HTML semântico e estilização CSS aplicada a projetos reais.",
+      changes: "+50 commits iniciais",
+      skills: ["Lógica de Programação", "Git", "HTML/CSS", "JavaScript", "pixel art"]
     }
   ],
 
@@ -174,7 +213,8 @@ export const portfolioData = {
     { command: "date", desc: "Exibe a data e hora do sistema" },
     { command: "whoami", desc: "Mostra informações do usuário autenticado na sessão" },
     { command: "sudo", desc: "Tenta executar privilégio de administrador (root)" },
-    { command: "repo", desc: "Abre o repositório deste portfólio no GitHub" }
+    { command: "repo", desc: "Abre o repositório deste portfólio no GitHub" },
+    { command: "lang", desc: "Alterna o idioma do portfólio entre Português e Inglês" }
   ],
 
   bootSequence: [
